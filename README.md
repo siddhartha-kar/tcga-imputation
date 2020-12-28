@@ -337,11 +337,11 @@ cd into directory containing ``tcga_prad_eur_vcf.txt`` and add the standard VCF 
 
 The VCFtools tar.gz was downloaded from here: <https://vcftools.github.io/man_latest.html> and built using instructions available here: <https://github.com/vcftools/vcftools>
 
-1. None of the samples had inbreeding coefficient, F > +/- 0.2 or abs(F) > 0.2 so all were retained based on this filter.  Guide to interpretation: <https://sites.google.com/a/broadinstitute.org/ricopili/preimputation-qc#TOC-Technical-Details>.  This was done using visual inspection of the ``tcga_prad_eur_vcftools.het`` file output from the first command below but an R script may have to be introduced if there are samples to be filtered out.
+1. None of the samples had inbreeding coefficient, F > +/- 0.2 or |F| > 0.2 so all were retained based on this filter.  Guide to interpretation: <https://sites.google.com/a/broadinstitute.org/ricopili/preimputation-qc#TOC-Technical-Details>.  This was done using visual inspection of the ``tcga_prad_eur_vcftools.het`` file output from the command below but an R/vcftools script may have to be introduced if there are samples to be filtered out.
 
 > vcftools \-\-vcf tcga_prad_eur.vcf \-\-het \-\-out tcga_prad_eur_vcftools
 
-2. None of the samples had relatedness_phi (kinship coefficient) > 0.0884 so all were retained based on this filter.  Guide to interpretation: <http://people.virginia.edu/~wc9c/KING/manual.html>.  This was done using visual inspection of the ``tcga_prad_eur_vcftools.relatedness2`` file output from the second command below but an R script may have to be introduced if there are samples to be filtered out.
+2. None of the samples had relatedness_phi (kinship coefficient) > 0.0884 so all were retained based on this filter.  Guide to interpretation: <http://people.virginia.edu/~wc9c/KING/manual.html>.  This was done using visual inspection of the ``tcga_prad_eur_vcftools.relatedness2`` file output from the command below but an R/vcftools script may have to be introduced if there are samples to be filtered out.
 
 > vcftools \-\-vcf tcga_prad_eur.vcf \-\-relatedness2 \-\-out tcga_prad_eur_vcftools
 
@@ -376,7 +376,7 @@ Use vcftools to split ``tcga_prad_eur_bcftools.checkref.vcf`` by chromsome (code
 
 > seq 1 22 | xargs -n1 -P4 -I {} vcftools \-\-vcf tcga_prad_eur_bcftools.checkref.vcf \-\-chr {} \-\-recode \-\-recode-INFO-all \-\-out tcga_prad_eur.chr{}
 
-Use bgzip to compress all the chromosome-level VCF files to vcf.gz files.  The VCF files must be in the htslib directory for bgzip to work.
+Use bgzip to compress each chromosome-level VCF file to a vcf.gz file.  The VCF files must be in the htslib directory for bgzip to work.
 
 * bgzip (<http://www.htslib.org/doc/bgzip.html>) is a utility in HTSlib.
 * HTSlib was downloaded from: <http://www.htslib.org/download/>
@@ -392,7 +392,7 @@ Use the Michigan Imputation Server <https://imputationserver.sph.umich.edu/index
 
 * Datatype: unphased
 * Build: hg19
-* Reference Panel: apps@1000g-phase-3-v5 (hg19)
+* Reference Panel: apps @ 1000g-phase-3-v5 (hg19)
 * Population: eur
 * Phasing: eagle
 * Mode: imputation
@@ -400,4 +400,5 @@ Use the Michigan Imputation Server <https://imputationserver.sph.umich.edu/index
 
 SNPs with alleles that differ from or do not match the alleles in the reference panel are filtered out.  These are listed in the ``snps-excluded.txt`` file on the server.
 
-SNPs on the array but not in the reference panel are not used for phasing and imputation but they are not filtered out.  These SNPs are listed in the ``typed-only.txt`` file on the server.
+SNPs on the array but not in the reference panel are not used for phasing and imputation but they are not filtered out.  These are listed in the ``typed-only.txt`` file on the server.
+
