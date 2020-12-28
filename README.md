@@ -1,3 +1,4 @@
+<div style="text-align: justify">
 
 ### **notes**
 
@@ -400,3 +401,5 @@ Use the Michigan Imputation Server <https://imputationserver.sph.umich.edu/index
 SNPs with alleles that differ from or do not match the alleles in the reference panel are filtered out.  These are listed in the ``snps-excluded.txt`` file on the server.
 
 SNPs on the array but not in the reference panel are not used for phasing and imputation but they are not filtered out.  These SNPs are listed in the ``typed-only.txt`` file on the server.
+
+</div>
