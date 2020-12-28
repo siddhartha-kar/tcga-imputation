@@ -99,11 +99,11 @@ cd into the directory where you will download the TCGA data set.  This directory
 
 Secure the token using chmod 600.
 
-> chmod 600 gdc-user-token.txt
+>```chmod 600 gdc-user-token.txt```
 
 IMPORTANT: The files that you are about to download are from the controlled access level of TCGA so please use a secure research data storage facility.
 
-> ./gdc-client download -m gdc_manifest_prad.txt -t gdc-user-token.txt
+>```./gdc-client download -m gdc_manifest_prad.txt -t gdc-user-token.txt```
 
 ### **run the script ``vcf_from_birdseed.R``**
 
@@ -327,7 +327,7 @@ write.table(annocalls, file = "tcga_prad_eur_vcf.txt", sep = "\t", row.names = F
 
 cd into directory containing ``tcga_prad_eur_vcf.txt`` and add the standard VCF header (metadata).
 
-> { printf \'##fileformat=VCFv4.0\\n\'; cat tcga_prad_eur_vcf.txt; } > tcga_prad_eur.vcf
+>```{ printf '##fileformat=VCFv4.0\n'; cat tcga_prad_eur_vcf.txt; } > tcga_prad_eur.vcf```
 
 ### **command line step - vcftools**
 
@@ -339,15 +339,15 @@ The VCFtools tar.gz was downloaded from here: <https://vcftools.github.io/man_la
 
 1. None of the samples had inbreeding coefficient, F > +/- 0.2 or |F| > 0.2 so all were retained based on this filter.  Guide to interpretation: <https://sites.google.com/a/broadinstitute.org/ricopili/preimputation-qc#TOC-Technical-Details>.  This was done using visual inspection of the ``tcga_prad_eur_vcftools.het`` file output from the command below but an R/vcftools script may have to be introduced if there are samples to be filtered out.
 
-> vcftools \-\-vcf tcga_prad_eur.vcf \-\-het \-\-out tcga_prad_eur_vcftools
+>```vcftools --vcf tcga_prad_eur.vcf --het --out tcga_prad_eur_vcftools```
 
 2. None of the samples had relatedness_phi (kinship coefficient) > 0.0884 so all were retained based on this filter.  Guide to interpretation: <http://people.virginia.edu/~wc9c/KING/manual.html>.  This was done using visual inspection of the ``tcga_prad_eur_vcftools.relatedness2`` file output from the command below but an R/vcftools script may have to be introduced if there are samples to be filtered out.
 
-> vcftools \-\-vcf tcga_prad_eur.vcf \-\-relatedness2 \-\-out tcga_prad_eur_vcftools
+>```vcftools --vcf tcga_prad_eur.vcf --relatedness2 --out tcga_prad_eur_vcftools```
 
 3. The third command removes SNPs with minor allele frequency < 0.005 (0.5%) and Hardy-Weinberg equilibrium exact test P < 1e-6.
 
-> vcftools \-\-vcf tcga_prad_eur.vcf \-\-maf 0.005 \-\-hwe 1e-6 \-\-out tcga_prad_eur_vcftools \-\-recode \-\-recode-INFO-all
+>```vcftools --vcf tcga_prad_eur.vcf --maf 0.005 --hwe 1e-6 --out tcga_prad_eur_vcftools --recode --recode-INFO-all```
 
 Output from vcftools: ``tcga_prad_eur_vcftools.recode.vcf``
 
@@ -362,11 +362,11 @@ For the bcftools command to work, ``tcga_prad_eur_vcftools.recode.vcf`` and ``hs
 
 The bcftools command coupled with ``hs37d5.fa`` helps align the REF and ALT alleles with corresponding data from 1000 Genomes.
 
-> ./bcftools norm \-\-check-ref ws -f hs37d5.fa tcga_prad_eur_vcftools.recode.vcf -o tcga_prad_eur_bcftools.checkref.vcf
+>```./bcftools norm --check-ref ws -f hs37d5.fa tcga_prad_eur_vcftools.recode.vcf -o tcga_prad_eur_bcftools.checkref.vcf```
 
 checkVCF performs a series of QC/sanity checks on the VCF file output by bcftools - ``tcga_prad_eur_bcftools.checkref.vcf``.  It should yield 0's for all checks at this stage but enumerate all SNPs with ALT allele frequency > 0.5
 
-> python checkVCF.py -r hs37d5.fa -o test tcga_prad_eur_bcftools.checkref.vcf
+>```python checkVCF.py -r hs37d5.fa -o test tcga_prad_eur_bcftools.checkref.vcf```
 
 ### **command line step - vcftools and htslib/bgzip**
 
@@ -374,7 +374,7 @@ checkVCF performs a series of QC/sanity checks on the VCF file output by bcftool
 
 Use vcftools to split ``tcga_prad_eur_bcftools.checkref.vcf`` by chromsome (code from: <https://gist.github.com/obenshaindw/c1afbedb0e317c1483e0>).  ``tcga_prad_eur_bcftools.checkref.vcf`` must be in the vcftools directory for this.
 
-> seq 1 22 | xargs -n1 -P4 -I {} vcftools \-\-vcf tcga_prad_eur_bcftools.checkref.vcf \-\-chr {} \-\-recode \-\-recode-INFO-all \-\-out tcga_prad_eur.chr{}
+>```seq 1 22 | xargs -n1 -P4 -I {} vcftools --vcf tcga_prad_eur_bcftools.checkref.vcf --chr {} --recode --recode-INFO-all --out tcga_prad_eur.chr{}```
 
 Use bgzip to compress each chromosome-level VCF file to a vcf.gz file.  The VCF files must be in the htslib directory for bgzip to work.
 
@@ -382,7 +382,7 @@ Use bgzip to compress each chromosome-level VCF file to a vcf.gz file.  The VCF 
 * HTSlib was downloaded from: <http://www.htslib.org/download/>
 * Additional (and useful!) installation instructions were found at: <https://github.com/samtools/htslib/blob/develop/INSTALL>
 
-> ls *.vcf | xargs -n1 ./bgzip
+>```ls *.vcf | xargs -n1 ./bgzip```
 
 ### **imputation server**
 
@@ -401,4 +401,3 @@ Use the Michigan Imputation Server <https://imputationserver.sph.umich.edu/index
 SNPs with alleles that differ from or do not match the alleles in the reference panel are filtered out.  These are listed in the ``snps-excluded.txt`` file on the server.
 
 SNPs on the array but not in the reference panel are not used for phasing and imputation but they are not filtered out.  These are listed in the ``typed-only.txt`` file on the server.
-
