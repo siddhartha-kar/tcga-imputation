@@ -1,10 +1,10 @@
-# TCGA germline genotype imputation cookbook
+# TCGA germline genotype imputation workflow
 
 ### **notes**
 
 ---
 
-This cookbook applies to TCGA single cancer data sets though it could easily be extended to the pan-cancer data set.  The steps are presented in order and maintaining this order is usually important.
+This workflow applies to TCGA single cancer data sets though it could easily be extended to the pan-cancer data set.  The steps are presented in order and maintaining this order is usually important.
 
 ### **manifest file**
 
