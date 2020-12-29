@@ -400,7 +400,7 @@ Use bgzip to compress each chromosome-level VCF file to a vcf.gz file.  The VCF 
 
 ---
 
-Use the Michigan Imputation Server <https://imputationserver.sph.umich.edu/index.html#!> with the following options:
+Use the Michigan Imputation Server (<https://imputationserver.sph.umich.edu/index.html#!>) with the following options -
 
 * Datatype: unphased
 * Build: hg19
