@@ -452,3 +452,5 @@ See <https://github.com/MeaneyLab/PRSoS/blob/master/PRSoS.py> code for rules tha
 
 >```spark-submit --master local[*] PRSoS.py allchr_pgs.vcf gwasfile.txt mca_pgs_tcga_prad --thresholds 5e-8 --snp_log```
 
+Outputs: ``mca_pgs_tcga_prad.score.csv`` contains the sample-level polygenic scores and ``mca_pgs_tcga_prad.snplog.csv`` contains details of the SNPs that were used and discarded.
+
