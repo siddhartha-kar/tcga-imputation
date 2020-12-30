@@ -401,3 +401,42 @@ Use the Michigan Imputation Server (<https://imputationserver.sph.umich.edu/inde
 SNPs with alleles that differ from or do not match the alleles in the reference panel are filtered out.  These are listed in the ``snps-excluded.txt`` file on the server.
 
 SNPs on the array but not in the reference panel are not used for phasing and imputation but they are not filtered out.  These are listed in the ``typed-only.txt`` file on the server.
+
+### **extract SNPs from imputed dosage VCFs**
+
+---
+
+Download and unzip the password-protected chromosome-level files (this must be to a secure research data storage facility) and collect the dose.vcf.gz files in a directory.
+
+Create a file ``snps_pgs.txt`` that contains the list of SNPs from the GWAS that will be used to construct the polygenic score.  The SNPs must be in the format chr:pos:ref:alt  If unsure of ref and alt coding, can include a copy of each SNP in this file with each copy in chr:pos:alt:ref format.
+
+All files must be in the bcftools directory.
+
+```
+for f in *.vcf.gz; do 
+    echo "filtering $f"; 
+./bcftools filter --include 'ID=@snps_pgs.txt' -o "${f//.vcf.gz}"_chr_pgs.vcf "$f"; done
+```
+
+Outputs: chromosome-level files ending in _chr_pgs.vcf
+
+### **concatenate chromosome-level VCFs**
+
+---
+
+These are the chromosome-level files ending in _chr_pgs.vcf using vcftools (in the vcftools directory).
+
+>```vcf-concat *.vcf > allchr_pgs.vcf```
+
+### **generate polygenic scores**
+
+---
+
+Download and install the PRS-on-Spark tool from <https://github.com/MeaneyLab/PRSoS>.  Detailed installation instructions are included on the page.
+
+``PRSoS.py`` requires in the same directory: ``allchr_pgs.vcf`` and ``gwasfile.txt``.  ``gwasfile.txt`` must have five columns with the names and order as shown in <https://github.com/MeaneyLab/PRSoS>.  If the ``or`` column contains beta, leave the command below as is but if it contains an odds ratio, add the flag ``--log_or`` to the command below.  It doesn't matter that this column is called ``or`` even if it contains a beta coefficient.  The ``snpid`` column must be in the chr:pos:ref:alt format.   ``gwasfile.txt`` must be coded with ``a1`` as the effect allele.
+
+See <https://github.com/MeaneyLab/PRSoS/blob/master/PRSoS.py> code for rules that PRSoS uses to discard ambiguous SNPs when (not) supplied allele frequencies.
+
+>```spark-submit --master local[*] PRSoS.py allchr_pgs.vcf gwasfile.txt mca_pgs_tcga_prad --thresholds 5e-8 --snp_log```
+
