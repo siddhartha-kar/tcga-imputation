@@ -438,7 +438,7 @@ Download and install the PRS-on-Spark tool from <https://github.com/MeaneyLab/PR
 
 See <https://github.com/MeaneyLab/PRSoS/blob/master/PRSoS.py> code for rules that PRSoS uses to discard ambiguous SNPs when (not) supplied allele frequencies.
 
-Outputs: ``mca_pgs_tcga_prad.score.csv`` contains the sample-level polygenic scores and ``mca_pgs_tcga_prad.snplog.csv`` contains details of the SNPs that were used and discarded.
-
 >```spark-submit --master local[*] PRSoS.py allchr_pgs.vcf gwasfile.txt mca_pgs_tcga_prad --thresholds 5e-8 --snp_log```
+
+Outputs: ``mca_pgs_tcga_prad.score.csv`` contains the sample-level polygenic scores and ``mca_pgs_tcga_prad.snplog.csv`` contains details of the SNPs that were used and discarded.
 
