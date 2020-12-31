@@ -402,7 +402,7 @@ SNPs with alleles that differ from or do not match the alleles in the reference 
 
 SNPs on the array but not in the reference panel are not used for phasing and imputation but they are not filtered out.  These are listed in the ``typed-only.txt`` file on the server.
 
-### **extract SNPs from imputed dosage VCFs**
+### **command line step - extract SNPs from imputed dosage VCFs**
 
 ---
 
@@ -420,7 +420,7 @@ for f in *.vcf.gz; do
 
 Outputs: chromosome-level files ending in _chr_pgs.vcf
 
-### **concatenate chromosome-level VCFs**
+### **command line step - concatenate chromosome-level VCFs**
 
 ---
 
@@ -428,7 +428,7 @@ These are the chromosome-level files ending in _chr_pgs.vcf.  Concatenate them u
 
 >```vcf-concat *.vcf > allchr_pgs.vcf```
 
-### **generate polygenic scores**
+### **command line step - generate polygenic scores**
 
 ---
 
