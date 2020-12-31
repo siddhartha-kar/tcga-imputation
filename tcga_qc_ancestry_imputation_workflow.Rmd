@@ -436,7 +436,7 @@ Outputs: chromosome-level files ending in _chr_pgs.vcf
 
 ---
 
-These are the chromosome-level files ending in _chr_pgs.vcf using vcftools (in the vcftools directory).
+These are the chromosome-level files ending in _chr_pgs.vcf.  Concatenate them using vcftools (in the vcftools directory).
 
 >```vcf-concat *.vcf > allchr_pgs.vcf```
 
