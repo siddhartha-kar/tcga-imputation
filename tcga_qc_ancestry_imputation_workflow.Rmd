@@ -454,3 +454,14 @@ See <https://github.com/MeaneyLab/PRSoS/blob/master/PRSoS.py> code for rules tha
 
 Outputs: ``mca_pgs_tcga_prad.score.csv`` contains the sample-level polygenic scores and ``mca_pgs_tcga_prad.snplog.csv`` contains details of the SNPs that were used and discarded.
 
+### **command line step - extract genotypes for individual SNPs**
+
+---
+
+If you need the genotypes for individual SNPs, convert ``allchr_pgs.vcf`` into 012 genotype format files using vcftools (in the vcftools directory).  The 012 represents the number of ALT alleles.
+
+>```ulimit -n 3000```
+
+>```vcftools --vcf allchr_pgs.vcf --012```
+
+Outputs three files: ``out.012.indv`` (samples in order), ``out.012.pos`` (SNPs in order),  ``out.012`` [samples (rows) x SNPs (columns)]
