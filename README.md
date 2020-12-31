@@ -434,7 +434,7 @@ These are the chromosome-level files ending in _chr_pgs.vcf.  Concatenate them u
 
 Download and install the PRS-on-Spark tool from <https://github.com/MeaneyLab/PRSoS>.  Detailed installation instructions are included on the page.
 
-``PRSoS.py`` requires in the same directory: ``allchr_pgs.vcf`` and ``gwasfile.txt``.  ``gwasfile.txt`` must have five columns with the names and order as shown in <https://github.com/MeaneyLab/PRSoS>.  If the ``or`` column contains beta, leave the command below as is but if it contains an odds ratio, add the flag ``--log_or`` to the command below.  It doesn't matter that this column is called ``or`` even if it contains a beta coefficient.  The ``snpid`` column must be in the chr:pos:ref:alt format.   ``gwasfile.txt`` must be coded with ``a1`` as the effect allele.
+``PRSoS.py`` requires in the same directory: ``allchr_pgs.vcf`` and ``gwasfile.txt``.  ``gwasfile.txt`` must have five columns with the names and order as shown in <https://github.com/MeaneyLab/PRSoS>.  If the ``or`` column contains beta, leave the command below as is but if it contains an odds ratio, add the flag ``--log_or`` to the command below.  It doesn't matter that this column is called ``or`` even if it contains a beta coefficient.  To keep interpretation simple, the ``snpid`` column must be in the chr:pos:ref:alt format, ``a1`` must be REF and ``a2`` must be ALT, the sign on ``or`` (beta) must be aligned with ``a1`` (REF) as the effect allele, ``a1freq`` must be the frequency of REF, and ``a1`` and ``a2`` must match REF and ALT in ``allchr_pgs.vcf``, respectively.
 
 See <https://github.com/MeaneyLab/PRSoS/blob/master/PRSoS.py> code for rules that PRSoS uses to discard ambiguous SNPs when (not) supplied allele frequencies.
 
