@@ -412,7 +412,7 @@ Create a file ``snps_pgs.txt`` that contains the list of SNPs from the GWAS that
 
 All files must be in the bcftools directory.
 
->```
+```
 for f in *.vcf.gz; do 
     echo "filtering $f"; 
 ./bcftools filter --include 'ID=@snps_pgs.txt' -o "${f//.vcf.gz}"_chr_pgs.vcf "$f"; done
