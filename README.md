@@ -18,7 +18,7 @@ Under the "Files" tab (on the left hand side) select Simple nucleotide variation
 
 ---
 
-Right hand side of the same page > File Name > click any file name > Download button at the bottom of new page that opens up > download and extract the tar.gz file and go two levels into the directory and extract the mage-tab tar.gz file.  In it you will find the sdrf file, which is cancer specific.
+Right hand side of the same page > File Name > click any file name > Download button (under the "Metadata Files" section) at the bottom of new page that opens up > download and extract the tar.gz file and go two levels into the directory and extract the mage-tab tar.gz file.  In it you will find the sdrf file, which is cancer specific.
 
 ### **ancestry file**
 
