@@ -191,7 +191,7 @@ colnas <- colnas %>% setNames(1:370)
 
 calls <- calls %>% add_row(colnas)
 
-#the 45330 below should stay the same regardless of TCGA cancer data set but check and change if needed, calculated as 0.05 * 906601 (which is the total number of SNPs on the array and should remain constant)
+#the 45330 below should stay the same regardless of TCGA cancer data set but check and change if needed, calculated as 0.05 * 906600 (which is the total number of SNPs on the array and should remain constant)
 
 calls <- calls %>% select(which(calls[906601,]<=45330))
 
@@ -233,7 +233,7 @@ header <- cbind(order, files, nmissing)
 
 colnames(header) <- c("order","filename","nmissing")
 
-#the 45330 below should stay the same regardless of TCGA cancer data set but check and change if needed, calculated as 0.05 * 906601 (which is the total number of SNPs on the array and should remain constant)
+#the 45330 below should stay the same regardless of TCGA cancer data set but check and change if needed, calculated as 0.05 * 906600 (which is the total number of SNPs on the array and should remain constant)
 
 header <- header %>% filter(nmissing<=45330)
 
