@@ -345,8 +345,6 @@ cd into directory containing ``tcga_prad_eur_vcf.txt`` and add the standard VCF 
 
 ---
 
-``tcga_prad_eur.vcf`` must be in the vcftools directory.
-
 The VCFtools tar.gz was downloaded from here: <https://vcftools.github.io/man_latest.html> and built using instructions available here: <https://github.com/vcftools/vcftools>
 
 1. None of the samples had inbreeding coefficient, F > +/- 0.2 or |F| > 0.2 so all were retained based on this filter.  Guide to interpretation: <https://sites.google.com/a/broadinstitute.org/ricopili/preimputation-qc#TOC-Technical-Details>.  This was done using visual inspection of the ``tcga_prad_eur_vcftools.het`` file output from the command below but a vcftools script may have to be introduced if there are samples to be filtered out (see second command immediately below).
