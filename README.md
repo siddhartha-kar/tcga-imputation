@@ -372,7 +372,7 @@ checkVCF performs a series of QC/sanity checks on the VCF file output by bcftool
 
 ---
 
-Use vcftools to split ``tcga_prad_eur_bcftools.checkref.vcf`` by chromsome (code from: <https://gist.github.com/obenshaindw/c1afbedb0e317c1483e0>).  ``tcga_prad_eur_bcftools.checkref.vcf`` must be in the vcftools directory for this.
+Use vcftools to split ``tcga_prad_eur_bcftools.checkref.vcf`` by chromsome (code from: <https://gist.github.com/obenshaindw/c1afbedb0e317c1483e0>).
 
 >```seq 1 22 | xargs -n1 -P4 -I {} vcftools --vcf tcga_prad_eur_bcftools.checkref.vcf --chr {} --recode --recode-INFO-all --out tcga_prad_eur.chr{}```
 
