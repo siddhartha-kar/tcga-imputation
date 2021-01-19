@@ -341,7 +341,7 @@ The VCFtools tar.gz was downloaded from here: <https://vcftools.github.io/man_la
 
 >```vcftools --remove-indv SAMPLE1 --remove-indv SAMPLE2 --remove-indv SAMPLE3 --vcf tcga_prad_eur.vcf --recode --out tcga_prad_eur_hetfilt```
 
-2. None of the samples had relatedness_phi (kinship coefficient) > 0.0884 so all were retained based on this filter.  Guide to interpretation: <http://people.virginia.edu/~wc9c/KING/manual.html>.  This was done using visual inspection of the ``tcga_prad_eur_vcftools.relatedness2`` file output from the command below but an R/vcftools script may have to be introduced if there are samples to be filtered out.
+2. None of the samples had relatedness_phi (kinship coefficient) > 0.0884 so all were retained based on this filter.  Guide to interpretation: <http://people.virginia.edu/~wc9c/KING/manual.html>.  This was done using visual inspection of the ``tcga_prad_eur_vcftools.relatedness2`` file output from the command below but a vcftools script may have to be introduced if there are samples to be filtered out.
 
 >```vcftools --vcf tcga_prad_eur.vcf --relatedness2 --out tcga_prad_eur_vcftools```
 
