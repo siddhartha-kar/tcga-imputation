@@ -420,7 +420,7 @@ SNPs on the array but not in the reference panel are not used for phasing and im
 
 Download and unzip the password-protected chromosome-level files (this must be to a secure research data storage facility) and collect the dose.vcf.gz files in a directory.
 
-Create a file ``snps_pgs.txt`` that contains the list of SNPs from the GWAS that will be used to construct the polygenic score.  The SNPs must be in the format chr:pos:ref:alt  If unsure of ref and alt coding, can include a copy of each SNP in this file with each copy in chr:pos:alt:ref format.
+Create a file ``snps_pgs.txt`` that contains the list of SNPs from the GWAS that will be used to construct the polygenic score.  The SNP IDs must be in the format chr:pos:ref:alt  If unsure of ref and alt coding, can include a copy of each SNP in this file with each copy in chr:pos:alt:ref format.
 
 All files must be in the bcftools directory.
 
@@ -436,7 +436,7 @@ Outputs: chromosome-level files ending in _chr_pgs.vcf
 
 ---
 
-These are the chromosome-level files ending in _chr_pgs.vcf.  Concatenate them using vcftools (in the vcftools directory).
+Concatenate the chromosome-level files ending in _chr_pgs.vcf using vcftools.
 
 >```vcf-concat *.vcf > allchr_pgs.vcf```
 
