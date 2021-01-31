@@ -446,7 +446,7 @@ Outputs: ``mca_pgs_tcga_prad.score.csv`` contains the sample-level polygenic sco
 
 ---
 
-If you need the genotypes for individual SNPs, convert ``allchr_pgs.vcf`` into 012 genotype format files using vcftools (in the vcftools directory).  The 012 represents the number of ALT alleles.
+If you need the genotypes for individual SNPs, convert ``allchr_pgs.vcf`` into 012 genotype format files using vcftools.  The 012 represents the number of ALT alleles.
 
 >```ulimit -n 3000```
 
