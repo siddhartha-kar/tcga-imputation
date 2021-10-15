@@ -366,7 +366,7 @@ The bcftools command coupled with ``hs37d5.fa`` helps align the REF and ALT alle
 
 checkVCF performs a series of QC/sanity checks on the VCF file output by bcftools - ``tcga_prad_eur_bcftools.checkref.vcf``.  It should yield 0's for all checks at this stage but enumerate all SNPs with ALT allele frequency > 0.5
 
->```python checkVCF.py -r hs37d5.fa -o test tcga_prad_eur_bcftools.checkref.vcf```
+>```python2 checkVCF.py -r hs37d5.fa -o test tcga_prad_eur_bcftools.checkref.vcf```
 
 ### **command line step - vcftools and htslib/bgzip**
 
