@@ -382,7 +382,7 @@ Use bgzip to compress each chromosome-level VCF file to a vcf.gz file.  The VCF 
 * HTSlib was downloaded from: <http://www.htslib.org/download/>
 * Additional (and useful!) installation instructions were found at: <https://github.com/samtools/htslib/blob/develop/INSTALL>
 
->```ls *.vcf | xargs -n1 ./bgzip```
+>```ls *.vcf | xargs -n1 bgzip```
 
 ### **imputation server**
 
