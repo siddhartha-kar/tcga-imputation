@@ -26,6 +26,8 @@ sdrf <- inner_join(ancestry, sdrf)
 
 sdrf <- sdrf %>% select(filename)
 
+#change filenames depending on manifest download date and cancer being studied
+
 manifest <- read_delim(file = "gdc_manifest.2020-12-20.txt", delim = "\t", col_names = T)
 
 manifest <- inner_join(manifest, sdrf)
