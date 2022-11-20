@@ -454,6 +454,27 @@ Download and unzip the 64-bit version of PLINK 2.0 alpha from here: https://www.
 
 Outputs: with ``allchr_pgs`` as the prefix, ``.bed``, ``.bim``, and ``.fam`` files.
 
+Next, download, unzip, and obtain ``PRSice.R`` and ``PRSice_mac``  from https://choishingwan.github.io/PRS-Tutorial/prsice.
+
+Prepare a file ``base.txt`` with columns ``SNP``, ``P``, ``BETA``,	``A1``,	``A2``,	``CHR``, and ``BP`` where ``SNP`` is in the chr:pos:ref:alt format as in ``allchr_pgs.vcf``, and ``A1`` is the effect allele that determines the sign of ``BETA``.
+
+Run:
+
+```
+Rscript PRSice.R --dir . \
+    --prsice ./PRSice_mac \
+    --base base.txt \
+    --target allchr_pgs \
+    --thread 8 \
+    --stat BETA \
+    --no-regress \
+    --no-clump \
+    --out mca_pgs_tcga_prad.score \
+    --binary-target F
+```
+
+Outputs: ``mca_pgs_tcga_prad.score.log`` containing details of the SNPs that were used and discarded and ``pgs.score.all_score`` containing the sample-level polygenic scores.
+
 ### **command line step - extract genotypes for individual SNPs**
 
 ---
