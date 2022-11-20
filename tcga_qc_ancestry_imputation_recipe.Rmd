@@ -454,6 +454,16 @@ See <https://github.com/MeaneyLab/PRSoS/blob/master/PRSoS.py> code for rules tha
 
 Outputs: ``mca_pgs_tcga_prad.score.csv`` contains the sample-level polygenic scores and ``mca_pgs_tcga_prad.snplog.csv`` contains details of the SNPs that were used and discarded.
 
+### **command line step - generate polygenic scores using PRSice-2**
+
+---
+
+Download and unzip the 64-bit version of PLINK 2.0 alpha from here: https://www.cog-genomics.org/plink/2.0 to obtain the file ``plink2``.
+
+>```./plink2 --vcf allchr_pgs.vcf --make-bed --out allchr_pgs```
+
+Outputs: with ``allchr_pgs`` as the prefix, ``.bed``, ``.bim``, and ``.fam`` files.
+
 ### **command line step - extract genotypes for individual SNPs**
 
 ---
