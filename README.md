@@ -448,7 +448,7 @@ Outputs: ``mca_pgs_tcga_prad.score.csv`` contains the sample-level polygenic sco
 
 ---
 
-Download and unzip PLINK 2.0 alpha from here: https://www.cog-genomics.org/plink/2.0 to obtain the file ``plink2``.
+Download and unzip the 64-bit version of PLINK 2.0 alpha from here: https://www.cog-genomics.org/plink/2.0 to obtain the file ``plink2``.
 
 >```./plink2 --vcf allchr_pgs.vcf --make-bed --out allchr_pgs```
 
